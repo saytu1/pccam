@@ -22,8 +22,18 @@ USB 카메라(웹캠) 화면을 실시간으로 보고, **정해 둔 시간 간�
 2. 이 폴더의 `install.bat` 더블클릭 (패키지 설치, 최초 1회)
 3. `run.bat` 더블클릭 → 프로그램 실행
 
-### exe 파일로 만들기 (Python 없는 PC에서 사용)
-`build_exe.bat` 실행 → `dist\PCCam.exe` 생성. 이 파일만 복사해서 쓰면 됩니다.
+### 설치 파일(exe)로 설치하기 — Python 필요 없음
+`PCCam-Setup-x.x.x.exe` 를 실행하면 일반 프로그램처럼 설치됩니다 (시작 메뉴·바탕화면 바로가기, 제어판에서 제거 가능).
+설치하지 않고 쓰려면 `PCCam-Portable-x.x.x.zip` 을 풀고 `PCCam.exe` 실행.
+
+**설치 파일 받는 곳**: GitHub 저장소 → **Actions** 탭 → "Windows 설치 파일 빌드" 최신 실행 → 아래 **Artifacts** 에서 다운로드.
+(`v1.0.0` 같은 태그를 올리면 **Releases** 에도 자동 등록됩니다.)
+
+설치 버전의 설정 파일 위치: `%APPDATA%\PCCam\settings.json`
+
+### 설치 파일 직접 만들기
+- `build_installer.bat` : 설치 파일 생성 ([Inno Setup 6](https://jrsoftware.org/isdl.php) 필요) → `dist\PCCam-Setup-*.exe`
+- `build_exe.bat` : 단일 exe 하나만 생성 → `dist\PCCam.exe`
 
 ## 사용 방법
 1. 카메라 선택 → 해상도 선택 → **연결**

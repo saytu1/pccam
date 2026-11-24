@@ -49,6 +49,12 @@ class App:
         root.geometry("1180x720")
         root.minsize(900, 560)
         root.protocol("WM_DELETE_WINDOW", self.on_close)
+        icon = Path(getattr(sys, "_MEIPASS", Path(__file__).resolve().parent.parent)) / "assets" / "pccam.ico"
+        if sys.platform.startswith("win") and icon.exists():
+            try:
+                root.iconbitmap(str(icon))
+            except tk.TclError:
+                pass
 
         self._build_ui()
         self._load_into_ui()

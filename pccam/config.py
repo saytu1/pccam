@@ -52,7 +52,20 @@ class Settings:
             return 0, 0  # 카메라 기본값
 
 
-SETTINGS_FILE = app_dir() / "settings.json"
+def settings_file() -> Path:
+    """설정 파일 위치.
+
+    exe 로 설치된 경우(Program Files 는 쓰기 불가) %APPDATA%\\PCCam\\settings.json,
+    소스 실행 시에는 main.py 옆 settings.json.
+    """
+    if getattr(sys, "frozen", False):
+        base = Path(os.environ.get("APPDATA") or os.path.expanduser("~")) / "PCCam"
+        base.mkdir(parents=True, exist_ok=True)
+        return base / "settings.json"
+    return app_dir() / "settings.json"
+
+
+SETTINGS_FILE = settings_file()
 
 
 def load_settings(path: Path = SETTINGS_FILE) -> Settings:
